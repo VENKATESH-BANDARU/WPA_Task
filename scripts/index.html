@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>WebSocket Notifications</title>
+</head>
+
+<body>
+    <script>
+        const ws = new WebSocket('ws://localhost:3000');
+
+        ws.onopen = () => {
+            console.log('Connected to WebSocket server');
+            // Subscribe to user activities
+            ws.send(JSON.stringify({ action: 'subscribe', userId: 'user123' }));
+            // Subscribe to post activities
+            ws.send(JSON.stringify({ action: 'subscribe', postId: 'post123' }));
+        };
+
+        ws.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+            console.log('Received notification:', data);
+        };
+
+        ws.onclose = () => {
+            console.log('Disconnected from WebSocket server');
+        };
+    </script>
+</body>
+
+</html>
