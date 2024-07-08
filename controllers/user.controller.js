@@ -10,6 +10,7 @@ class Users {
             res.status(400).json({ error: error.message });
         }
     }
+
     async singleUser(req, res) {
         try {
             const user = await User.findByPk(req.params.id);
@@ -21,6 +22,7 @@ class Users {
             res.status(400).json({ error: error.message });
         }
     }
+
     async updateUser(req, res) {
         try {
             const user = await User.findByPk(req.params.id);
@@ -34,6 +36,7 @@ class Users {
             res.status(400).json({ error: error.message });
         }
     }
+    
     async deleteUser(req, res) {
         try {
             const user = await User.findByPk(req.params.id);

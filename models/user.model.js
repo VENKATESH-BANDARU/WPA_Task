@@ -29,11 +29,11 @@ module.exports = (sequelize, DataTypes) => {
 
   User.beforeCreate(async (user) => {
     const salt = await bcrypt.genSalt(10);
-    user.password = await bcrypt.hashSync(user.password, salt);
+    user.password = await bcrypt.hash(user.password, salt);
   });
 
   User.prototype.isValidPassword = async function (password) {
-    return await bcrypt.compareSync(password, this.password);
+    return await bcrypt.compare(password, this.password);
   };
 
   return User;

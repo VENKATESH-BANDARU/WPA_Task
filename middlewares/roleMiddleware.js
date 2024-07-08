@@ -1,5 +1,4 @@
 const { User } = require('../models/index.model');
-const { ADMIN, EDITOR } = require('../config/roles');
 
 module.exports = (roles) => {
     return async (req, res, next) => {

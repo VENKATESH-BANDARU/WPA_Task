@@ -1,4 +1,5 @@
 const { User } = require('../models/index.model');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('../config/config');
 const emailService = require('../services/emailServices');
@@ -27,6 +28,9 @@ class Auth {
             const user = await User.findOne({ where: { email } });
             if (!user || !(await user.isValidPassword(password))) {
                 return res.status(401).json({ message: 'Invalid email or password' });
+            }
+            if (user && user.verified === false) {
+                return res.status(401).json({ message: "Email is not verified" });
             }
 
             const token = jwt.sign({ id: user.id }, config.jwtSecret, { expiresIn: '1d' });
@@ -87,7 +91,10 @@ class Auth {
                 return res.status(400).json({ message: 'Invalid token' });
             }
 
-            user.password = newPassword;
+            const salt = await bcrypt.genSalt(10);
+            const hashedPassword = await bcrypt.hash(newPassword, salt);
+
+            user.password = hashedPassword;
             await user.save();
 
             res.json({ message: 'Password updated successfully' });

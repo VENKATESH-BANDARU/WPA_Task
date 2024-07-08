@@ -2,7 +2,6 @@
 
 ## Requirements
 - Node.js
-- Docker
 - PostgreSQL
 
 ## Setup
@@ -11,15 +10,11 @@
 1. Clone the repository.
 2. Install dependencies: `npm install`
 3. Set up environment variables in a `.env` file.
-4. Run database migrations: `npm run migrate`
-5. Start the application: `npm start`
+4. Start the application: `npm start`
 
-### Docker Setup
-1. Clone the repository.
-2. Build and run the containers: `docker-compose up`
 
 ## API Documentation
-API documentation is available via Swagger at `/api-docs`.
+API documentation is available and for that using postman API documentation.
 
 ## Testing
 Run tests using: `npm test`
@@ -30,8 +25,6 @@ Run tests using: `npm test`
 - Real-Time Communication
 - RESTful APIs
 - Unit and Integration Testing
-- CI/CD Pipeline
-- Dockerization
 
 ## Contributing
 Feel free to submit issues or pull requests.
