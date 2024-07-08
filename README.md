@@ -15,6 +15,7 @@
 
 ## API Documentation
 API documentation is available and for that using postman API documentation.
+To see API documentation, [click here](https://documenter.getpostman.com/view/34347880/2sA3e2eUih).
 
 ## Testing
 Run tests using: `npm test`

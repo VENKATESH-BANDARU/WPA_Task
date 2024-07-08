@@ -1,6 +1,6 @@
 const request = require('supertest');
-const app = require('../index');
-const { sequelize, User } = require('../models');
+const app = require('../server');
+const { sequelize, User } = require('../models/index.model');
 
 let token;
 
@@ -27,7 +27,7 @@ beforeAll(async () => {
 describe('Post API', () => {
     it('should create a post', async () => {
         const res = await request(app)
-            .post('/api/posts')
+            .post('/api/v1/post')
             .set('Authorization', `Bearer ${token}`)
             .send({
                 title: 'Test Post',
@@ -39,7 +39,7 @@ describe('Post API', () => {
 
     it('should get all posts', async () => {
         const res = await request(app)
-            .get('/api/posts')
+            .get('/api/v1/post')
             .set('Authorization', `Bearer ${token}`);
         expect(res.statusCode).toEqual(200);
         expect(res.body).toBeInstanceOf(Array);
